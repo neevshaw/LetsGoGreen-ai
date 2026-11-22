@@ -1,7 +1,8 @@
 import os
 import shutil
 
-path = r'C:\Users\neevs\OneDrive - Davidson Academy\Desktop\Summer 2024 AI\Deep Learning Specialization\Recycling CAC\images'
+# One-off script used to merge the aluminum_soda_cans and food_cans classes into metal_cans
+path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
 move_from = "aluminum_soda_cans"
 move_to = "food_cans"
 rename = "metal_cans"
@@ -14,11 +15,3 @@ for folder in ["train", "test", "val"]:
     os.chdir(path)
     shutil.rmtree(path + "\\" + folder + "\\" + move_from)
     os.rename(path + "\\" + folder + "\\" + move_to, path + "\\" + folder + "\\" + rename)
-
-
-    
-        
-            
-
-
-        

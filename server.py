@@ -1,4 +1,3 @@
-# Import the necessary libraries
 from flask import Flask, render_template, request, jsonify
 
 from tensorflow.keras.models import model_from_json
@@ -10,20 +9,18 @@ from PIL import Image
 from io import BytesIO
 from base64 import b64decode
 
-# Declare the categories an their respective recylabilities (0=non-recylable, 1=recylcable, and 2,3,4=special instructions)
+# Recyclability per class: 0 = trash, 1 = recyclable, 2 = compostable,
+# 3 = depends on bag type, 4 = recyclable only if empty and clean
 classes = ['an aerosol can', 'cardboard', 'clothing', 'coffee grounds', 'disposable plastic cutlery', 'eggshells', 'food waste', 'a glass container', 'a glass food jar', 'a magazine', 'a metal can', 'a newspaper', 'office paper', 'a paper cup', 'a plastic bag', 'a plastic bottle', 'a plastic cup lid', 'a plastic detergent bottle', 'a plastic food container', 'a plastic straw', 'a shoe', 'styrofoam', 'a tea bag']
 re = [4, 1, 1, 2, 0, 2, 2, 1, 1, 1, 1, 1, 1, 0, 3, 4, 1, 4, 4, 0, 1, 0, 0]
 
-# Start the app
 app = Flask(__name__)
 
-# Load the model
 with open("model.json", 'r') as json_file:
     architecture = load(json_file)
     model = model_from_json(dumps(architecture))
     model.load_weights("weights.h5")
 
-# Declare URL's
 @app.route('/')
 def index():
     return render_template('index.html')

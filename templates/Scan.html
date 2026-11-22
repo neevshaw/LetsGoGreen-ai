@@ -134,14 +134,6 @@
             let crop = document.getElementById("crop")
             let image_data_url;
 
-            /* Creating a regular expression  
-            containing some mobile devices keywords  
-            to search it in details string*/
-
-            /* Using test() method to search regexp in details 
-            it returns boolean value*/
-            
-            
             if (/Macintosh/.test(navigator.userAgent) && "ontouchend" in document) {
               camera_button.addEventListener('click', async function() {
                 let stream = await navigator.mediaDevices.getUserMedia({ video: {facingMode: 'environment'}, audio: false });
@@ -150,21 +142,7 @@
                 click_button.disabled = false;
                 camera_button.disabled = true;
               });
-              camera_button.addEventListener('click', async function() {
-                let stream = await navigator.mediaDevices.getUserMedia({ video: {facingMode: 'environment'}, audio: false });
-                video.srcObject = stream;
-                canvas.style["z-index"] = -1;
-                click_button.disabled = false;
-                camera_button.disabled = true;
-              });
             } else {
-              camera_button.addEventListener('click', async function() {
-                let stream = await navigator.mediaDevices.getUserMedia({ video: {facingMode: 'user'}, audio: false });
-                video.srcObject = stream;
-                canvas.style["z-index"] = -1;
-                click_button.disabled = false;
-                camera_button.disabled = true;
-              });
               camera_button.addEventListener('click', async function() {
                 let stream = await navigator.mediaDevices.getUserMedia({ video: {facingMode: 'user'}, audio: false });
                 video.srcObject = stream;
